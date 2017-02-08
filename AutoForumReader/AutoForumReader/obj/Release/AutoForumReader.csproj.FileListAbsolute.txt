@@ -1,0 +1,10 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\DCSit.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\HtmlAgilityPack.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\HtmlAgilityPack.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\bin\Release\HtmlAgilityPack.xml
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.pdb

@@ -1,0 +1,8 @@
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Debug\AutoForumReader.exe.config
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Debug\AutoForumReader.exe
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Debug\AutoForumReader.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Debug\AutoForumReader.exe
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Debug\AutoForumReader.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Debug\HtmlAgilityPack.xml
+C:\Users\pvish\Downloads\AutoForumReader-master\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Debug\AutoForumReader.csprojResolveAssemblyReference.cache
