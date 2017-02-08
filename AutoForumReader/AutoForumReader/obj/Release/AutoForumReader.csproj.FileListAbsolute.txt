@@ -8,3 +8,11 @@ C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\Aut
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.exe
 C:\Users\Administrator\Documents\Visual Studio 2013\Projects\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.exe.config
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.exe
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.exe
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Release\AutoForumReader.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Release\HtmlAgilityPack.pdb
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\bin\Release\HtmlAgilityPack.xml
+C:\Users\pvish\Downloads\AutoForumReader-master (1)\AutoForumReader-master\AutoForumReader\AutoForumReader\obj\Release\AutoForumReader.csprojResolveAssemblyReference.cache

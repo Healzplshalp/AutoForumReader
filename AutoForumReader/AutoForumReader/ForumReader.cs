@@ -31,11 +31,12 @@ namespace AutoForumReader
                 serverLog.LogInit();
                 if (serverLog.StrErrorMessage.Length != 0)
                 {
-                    serverLog.RunTime("AutoForumReader - Version: " + System.Reflection
+                    string localError = "Error during runtime of Auto Forum Reader!: ";
+                    throw new Exception("-- AFR00 " + localError);
+                }
+                serverLog.RunTime("AutoForumReader - Version: " + System.Reflection
                                                                      .Assembly.GetExecutingAssembly()
                                                                      .GetName().Version.ToString());
-
-                }
             }
             catch (Exception Ex)
             {
