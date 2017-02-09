@@ -139,26 +139,34 @@ namespace AutoForumReader
                 foreach (HtmlNode link in collection)
                 {
                     //Parse each property
-                    string idString = link.Attributes[appSettings.ForumIDQuery].Value;
-                    string idOnly = CleanIDString(idString);
-                    string postWebsite = CleanWebsiteString(idOnly, website);
 
-                    HtmlNode childNode = link.SelectSingleNode(appSettings.ChildNodeQuery);
-                    string titleString = childNode.InnerHtml.ToString();
-                    string cleanTitle = CleanString(titleString);
+                    if (link.Attributes[appSettings.ForumIDQuery] == null)
+                    { 
+                        //Do not add topic if reference is null
+                    }
+                    else
+                    { 
+                        string idString = link.Attributes[appSettings.ForumIDQuery].Value;
+                        string idOnly = CleanIDString(idString);
+                        string postWebsite = CleanWebsiteString(idOnly, website);
 
-                    string tooltip = childNode.Attributes[appSettings.TooltipQuery].Value;
-                    string cleanTooltip = CleanString(tooltip);
+                        HtmlNode childNode = link.SelectSingleNode(appSettings.ChildNodeQuery);
+                        string titleString = childNode.InnerHtml.ToString();
+                        string cleanTitle = CleanString(titleString);
 
-                    //Create object for post
-                    ForumPostAttributes post = Post(website,
-                                                    postWebsite,
-                                                    websiteHtml,
-                                                    idOnly,
-                                                    cleanTitle,
-                                                    cleanTooltip);
-                    //Add post to global list
-                    forumPosts.Add(post);
+                        string tooltip = childNode.Attributes[appSettings.TooltipQuery].Value;
+                        string cleanTooltip = CleanString(tooltip);
+
+                        //Create object for post
+                        ForumPostAttributes post = Post(website,
+                                                        postWebsite,
+                                                        websiteHtml,
+                                                        idOnly,
+                                                        cleanTitle,
+                                                        cleanTooltip);
+                        //Add post to global list
+                        forumPosts.Add(post);
+                    }
                 }
                 return forumPosts;
             }
