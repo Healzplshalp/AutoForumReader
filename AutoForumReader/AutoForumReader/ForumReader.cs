@@ -141,6 +141,7 @@ namespace AutoForumReader
                     //Parse each property
                     string idString = link.Attributes[appSettings.ForumIDQuery].Value;
                     string idOnly = CleanIDString(idString);
+                    string postWebsite = CleanWebsiteString(idOnly, website);
 
                     HtmlNode childNode = link.SelectSingleNode(appSettings.ChildNodeQuery);
                     string titleString = childNode.InnerHtml.ToString();
@@ -151,6 +152,7 @@ namespace AutoForumReader
 
                     //Create object for post
                     ForumPostAttributes post = Post(website,
+                                                    postWebsite,
                                                     websiteHtml,
                                                     idOnly,
                                                     cleanTitle,
@@ -325,6 +327,25 @@ namespace AutoForumReader
             }
         }
 
+        private string CleanWebsiteString(string idString, string website)
+        {
+            try
+            {
+                int indexOfWow = website.IndexOf("wow");
+                int lengthOfWebsite = website.Length;
+                string websiteToWow = website.Substring(0, (lengthOfWebsite - (lengthOfWebsite-(indexOfWow + 3))));
+                websiteToWow = websiteToWow + "/topic/" + idString;
+
+                return websiteToWow;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Error during runtime, cleaning website string!: ";
+                serverLog.Error(localError + Ex.Message);
+                throw new Exception("-- AFR09 " + localError + Ex.Message.ToString());
+            }
+        }
+
         /// <summary>
         /// Cleans up string of new line characters
         /// </summary>
@@ -354,7 +375,8 @@ namespace AutoForumReader
         /// <param name="title"></param>
         /// <param name="tooltip"></param>
         /// <returns></returns>
-        private ForumPostAttributes Post (string site, 
+        private ForumPostAttributes Post (string site,
+                                          string postWebsite,
                                           HtmlDocument websiteHtml, 
                                           string id, 
                                           string title, 
@@ -365,6 +387,7 @@ namespace AutoForumReader
                 ForumPostAttributes newPost = new ForumPostAttributes()
                 {
                     website = site,
+                    postSite = postWebsite,
                     //webPage = websiteHtml,
                     forumID = id,
                     forumTitle = title,
