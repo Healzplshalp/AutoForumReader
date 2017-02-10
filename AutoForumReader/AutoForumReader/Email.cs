@@ -45,8 +45,8 @@ namespace AutoForumReader
             msg.To.Add(appSettings.EmailTo);
             msg.Subject = appSettings.EmailSubject + post.forumTitle;
             msg.Body = post.forumPreview + "\n \n"
-                     + "Post from: " + post.postSite + "\n"
-                     + post.mainForumTitle + "\n"
+                     + "Post from: " + post.postSite + "\n \n"
+                     + "#" + post.mainForumTitle + "\n"
                      + post.posterSpec;
 
             SmtpClient client = new SmtpClient();
