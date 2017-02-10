@@ -7,6 +7,14 @@ using System.Runtime.InteropServices;
 
 namespace AutoForumReader
 {
+    /// <summary>
+    /// Auto Forum Reader is an application set up to scan through Bnet forums for prospective recruits.  
+    /// The application can scan through as many websites as is added in the appconfig file as a list.
+    /// The application is intended to be run as a scheduled task.  If the application finds a prospective
+    /// recruit, an email is generated and sent to an inbox for recruiters to review.  Additionally functionality 
+    /// may be added to allow tags to be added to the emails sent to the recruitment inbox in order to identify
+    /// what type of spec a potential recruit is (Tank/DPS/Healer).
+    /// </summary>
     class Program
     {
         [DllImport("user32.dll", EntryPoint = "FindWindow", SetLastError = true)]
@@ -16,26 +24,45 @@ namespace AutoForumReader
 
         static extern int GetWindowThreadProcessId(int hWnd, out int lpdwProcessId);
 
+        /// <summary>
+        /// Main executing program block
+        /// 
+        /// Exit code 0:  Everything worked
+        /// Exit code 50: Error was encountered during runtime.  Check server log for more detail
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.Title = "Auto Forum Reader: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            
+
             ForumReader newForumReader = new ForumReader();
 
-            Console.WriteLine("Start Polling Websites....." + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            newForumReader.forumReaderInit();
-            Console.WriteLine(".....Job Finished Exiting");
+            try
+            {
+                Console.Title = "Auto Forum Reader: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                
+                //Start processing
+                Console.WriteLine("Start Polling Websites....." + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                newForumReader.forumReaderInit();
+                Console.WriteLine(".....Job Finished Exiting");
 
-            newForumReader.CloseLogFile();
-            newForumReader = null;
+                //Close server log file
+                newForumReader.CloseLogFile();
+                newForumReader = null;
 
-            IntPtr intpr = new IntPtr();
-            intpr = FindWindowByCaption(IntPtr.Zero, Console.Title.ToString());
-            int ProcessId = 0;
+                //Operation completed successfully
+                Environment.Exit(0);
+            }
+            catch
+            {
+                Console.WriteLine(".....Aborting job, runtime error!");
 
-            GetWindowThreadProcessId(intpr.ToInt32(), out ProcessId);
-            Console.WriteLine("Killing Process.....");
-            System.Diagnostics.Process.GetProcessById(ProcessId).Kill();
+                newForumReader.CloseLogFile();
+                newForumReader = null;
+
+                Console.WriteLine("Killing Process.....");
+                //Invalid command runtime error
+                Environment.Exit(50);
+            }
         }
     }
 }

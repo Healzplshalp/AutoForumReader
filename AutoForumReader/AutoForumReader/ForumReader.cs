@@ -19,7 +19,7 @@ namespace AutoForumReader
         Log_Win.Log serverLog = new Log_Win.Log();
 
         /// <summary>
-        /// Initialize
+        /// Initialize configuration file and load variables
         /// </summary>
         public void forumReaderInit()
         {
@@ -85,10 +85,14 @@ namespace AutoForumReader
                     HtmlNodeCollection collection = websiteHTML.DocumentNode
                                                                .SelectNodes(appSettings.ForumNodeQuery);
 
+                    //Get title of main forum page ie: Stormrage
+                    HtmlNode titleNode = websiteHTML.DocumentNode.SelectSingleNode(appSettings.ForumTitleQuery);
+
                     serverLog.RunTime("Checking for all posts");
                     //Retrieve all forums posts
                     forumPosts = ReadChildNode(collection,
                                                website,
+                                               titleNode,
                                                websiteHTML,
                                                forumPosts);
                     serverLog.Info("Found: " + forumPosts.Count + " topics in forum.");
@@ -102,6 +106,8 @@ namespace AutoForumReader
                     //Parse through new post titles for potential recruits
                     forumPosts = parser.TitleParser(forumPosts);
                     serverLog.Info("Found: " + forumPosts.Count + " prospective topics in forum.");
+
+                    forumPosts = parser.CheckSpec(forumPosts);
 
                     //If new posts with new potentials are found, send email with information
                     if (forumPosts.Count > 0)
@@ -130,7 +136,8 @@ namespace AutoForumReader
         /// <param name="forumPosts"></param>
         /// <returns></returns>
         private List<ForumPostAttributes> ReadChildNode(HtmlNodeCollection collection, 
-                                     string website, 
+                                     string website,
+                                     HtmlNode titleNode,
                                      HtmlDocument websiteHtml,
                                      List<ForumPostAttributes> forumPosts)
         {
@@ -145,7 +152,9 @@ namespace AutoForumReader
                         //Do not add topic if reference is null
                     }
                     else
-                    { 
+                    {
+                        string mainForumTitle = titleNode.InnerHtml;
+
                         string idString = link.Attributes[appSettings.ForumIDQuery].Value;
                         string idOnly = CleanIDString(idString);
                         string postWebsite = CleanWebsiteString(idOnly, website);
@@ -157,8 +166,12 @@ namespace AutoForumReader
                         string tooltip = childNode.Attributes[appSettings.TooltipQuery].Value;
                         string cleanTooltip = CleanString(tooltip);
 
+                        //TODO create parser to determine what spec a post is here
+
+
                         //Create object for post
                         ForumPostAttributes post = Post(website,
+                                                        mainForumTitle,
                                                         postWebsite,
                                                         websiteHtml,
                                                         idOnly,
@@ -384,6 +397,7 @@ namespace AutoForumReader
         /// <param name="tooltip"></param>
         /// <returns></returns>
         private ForumPostAttributes Post (string site,
+                                          string forumTitle,
                                           string postWebsite,
                                           HtmlDocument websiteHtml, 
                                           string id, 
@@ -395,6 +409,7 @@ namespace AutoForumReader
                 ForumPostAttributes newPost = new ForumPostAttributes()
                 {
                     website = site,
+                    mainForumTitle = forumTitle,
                     postSite = postWebsite,
                     //webPage = websiteHtml,
                     forumID = id,
@@ -412,15 +427,16 @@ namespace AutoForumReader
         }
 
         #region CloseLogFile
-        /* ***********************************************************************************************       
-         *  This method call the class Log to Close the log file.  
-         */
 
+        /// <summary>
+        /// This method call the class Log to Close the log file.  
+        /// </summary>
         public void CloseLogFile()
         {
             serverLog.Close();
 
         }   // end of method
+
         #endregion
 
     }

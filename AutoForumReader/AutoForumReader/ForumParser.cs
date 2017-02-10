@@ -126,5 +126,86 @@ namespace AutoForumReader
                 throw new Exception("-- FPARSE002 " + localError + Ex.Message.ToString());
             }
         }
+        
+        public List<ForumPostAttributes> CheckSpec(List<ForumPostAttributes> forumPosts)
+        {
+            foreach (ForumPostAttributes post in forumPosts)
+            {
+
+                string upperForumTitle = post.forumTitle.ToUpper();
+                string upperForumTooltip = post.forumPreview.ToUpper();
+
+                foreach (string tankFilter in appSettings.TankFilters)
+                {
+                    Regex regex = new Regex(tankFilter);
+                    Match match = regex.Match(upperForumTitle);
+
+                    if (match.Success)
+                    {
+                        post.posterSpec = "#Tank";
+                    }
+                    else
+                    {
+                        match = regex.Match(upperForumTooltip);
+
+                        if (match.Success)
+                        {
+                            post.posterSpec = "#Tank";
+                        }
+                    }
+
+                }//END For Each #Tank
+
+                foreach (string dpsFilter in appSettings.DpsFilters)
+                {
+                    Regex regex = new Regex(dpsFilter);
+                    Match match = regex.Match(upperForumTitle);
+
+                    if (match.Success)
+                    {
+                        post.posterSpec = "#DPS";
+                    }
+                    else
+                    {
+                        match = regex.Match(upperForumTooltip);
+
+                        if (match.Success)
+                        {
+                            post.posterSpec = "#DPS";
+                        }
+                    }
+
+                }//END For Each #DPS
+
+                foreach (string healFilter in appSettings.HealsFilters)
+                {
+                    Regex regex = new Regex(healFilter);
+                    Match match = regex.Match(upperForumTitle);
+
+                    if (match.Success)
+                    {
+                        post.posterSpec = "#Healer";
+                    }
+                    else
+                    {
+                        match = regex.Match(upperForumTooltip);
+
+                        if (match.Success)
+                        {
+                            post.posterSpec = "#Healer";
+                        }
+                    }
+
+                }//END For Each #DPS
+
+                if (post.posterSpec == null)
+                {
+                    post.posterSpec = "#Unknown";
+                }
+            }
+            //Found Nothing
+            return forumPosts;
+        }
+
     }
 }

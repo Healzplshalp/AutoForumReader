@@ -12,6 +12,7 @@ namespace AutoForumReader
     public class ForumPostAttributes
     {
         public string website { get; set; }
+        public string mainForumTitle { get; set; }
         public string postSite { get; set; }
         //public HtmlDocument webPage { get; set; }
         public string forumID { get; set; }
@@ -19,5 +20,6 @@ namespace AutoForumReader
         public string forumTimeStamp { get; set; }
         public string forumPreview { get; set; }
         public string forumPoster { get; set; }
+        public string posterSpec { get; set; }
     }
 }

@@ -15,11 +15,15 @@ namespace AutoForumReader
         private static List<string> websiteURLS;
         private static List<string> lfFilters;
         private static List<string> gFilters;
+        private static List<string> tankFilters;
+        private static List<string> dpsFilters;
+        private static List<string> healsFilters;
 
         private static string forumNodeQuery;
         private static string childNodeQuery;
         private static string forumIDQuery;
         private static string tooltipQuery;
+        private static string forumTitleQuery;
         private static string xmlDir;
 
         private static string emailFrom;
@@ -35,7 +39,7 @@ namespace AutoForumReader
 
         #endregion 
 
-        #region Getter Setters
+        #region Getters
 
         public List<string> WebsiteURL
         { get { return websiteURLS; } }
@@ -45,6 +49,15 @@ namespace AutoForumReader
 
         public List<string> GFilters
         { get { return gFilters; } }
+
+        public List<string> TankFilters
+        { get { return tankFilters; } }
+
+        public List<string> DpsFilters
+        { get { return dpsFilters; } }
+
+        public List<string> HealsFilters
+        { get { return healsFilters; } }
 
         public string ForumNodeQuery
         { get { return forumNodeQuery; } }
@@ -57,6 +70,9 @@ namespace AutoForumReader
 
         public string TooltipQuery
         { get { return tooltipQuery; } }
+
+        public string ForumTitleQuery
+        { get { return forumTitleQuery; } }
 
         public string XMLDir
         { get { return xmlDir; } }
@@ -97,10 +113,14 @@ namespace AutoForumReader
                 websiteURLS = GetWebsiteURL();
                 lfFilters = GetLFFilters();
                 gFilters = GetGuildFilters();
+                tankFilters = GetTankFilters();
+                dpsFilters = GetDPSFilters();
+                healsFilters = GetHealsFilters();
                 forumNodeQuery = GetForumNodeQuery();
                 childNodeQuery = GetChildNodeQuery();
                 forumIDQuery = GetForumIDQuery();
                 tooltipQuery = GetTooltipQuery();
+                forumTitleQuery = GetForumTitleQuery();
                 xmlDir = GetXMLDirectory();
                 emailFrom = GetEmailFrom();
                 emailTo = GetEmailTo();
@@ -209,6 +229,96 @@ namespace AutoForumReader
             }
         }
 
+        private static List<string> GetTankFilters()
+        {
+
+            List<string> filters = new List<string>();
+
+            try
+            {
+                var lfFilters = System.Configuration.ConfigurationManager
+                                              .GetSection("tankfilters")
+                                              as NameValueCollection;
+
+                foreach (string filter in lfFilters.AllKeys)
+                {
+                    filters.Add(lfFilters[filter]);
+                }
+
+                if (filters.Count < 1)
+                {
+                    throw new Exception("--APS056 tank filters list is not populated in config file");
+                }
+
+                return filters;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Encountered problem reading list of filters for tagging tanks: ";
+                throw new Exception("--APS0057 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        private static List<string> GetDPSFilters()
+        {
+
+            List<string> filters = new List<string>();
+
+            try
+            {
+                var lfFilters = System.Configuration.ConfigurationManager
+                                              .GetSection("dpsfilters")
+                                              as NameValueCollection;
+
+                foreach (string filter in lfFilters.AllKeys)
+                {
+                    filters.Add(lfFilters[filter]);
+                }
+
+                if (filters.Count < 1)
+                {
+                    throw new Exception("--APS058 dps filters list is not populated in config file");
+                }
+
+                return filters;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Encountered problem reading list of filters for tagging dps: ";
+                throw new Exception("--APS0059 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        private static List<string> GetHealsFilters()
+        {
+
+            List<string> filters = new List<string>();
+
+            try
+            {
+                var lfFilters = System.Configuration.ConfigurationManager
+                                              .GetSection("healsfilters")
+                                              as NameValueCollection;
+
+                foreach (string filter in lfFilters.AllKeys)
+                {
+                    filters.Add(lfFilters[filter]);
+                }
+
+                if (filters.Count < 1)
+                {
+                    throw new Exception("--APS060 heals filters list is not populated in config file");
+                }
+
+                return filters;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Encountered problem reading list of filters for tagging healers: ";
+                throw new Exception("--APS0061 " + localError + Ex.Message.ToString());
+            }
+        }
+
         private static string GetForumNodeQuery()
         {
             string query;
@@ -302,6 +412,30 @@ namespace AutoForumReader
             {
                 string localError = "Encountered problem reading forum ID query from config file: ";
                 throw new Exception("--APS0030 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        private static string GetForumTitleQuery()
+        {
+            string query;
+
+            try
+            {
+                query = System.Configuration.ConfigurationManager
+                                            .AppSettings["ForumTitle"]
+                                            .ToString();
+
+                if (String.IsNullOrEmpty(query))
+                {
+                    throw new Exception("-- APS0337 Query for forum title node is blank");
+                }
+
+                return query;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Encountered problem reading forum title query from config file: ";
+                throw new Exception("--APS0338 " + localError + Ex.Message.ToString());
             }
         }
 
