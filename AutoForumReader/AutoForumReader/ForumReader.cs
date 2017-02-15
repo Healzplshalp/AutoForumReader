@@ -10,9 +10,12 @@ using System.Xml.Linq;
 
 namespace AutoForumReader
 {
+    /// <summary>
+    /// This is the main firing class.  This class will call other classes and methods to process each forum post
+    /// This method also handles all logging of errors and major events throughout execution of the program.  
+    /// </summary>
     class ForumReader
     {
-
         GetAppSettings appSettings = new GetAppSettings();
         ForumParser parser = new ForumParser();
         Email sendEmail = new Email();
@@ -20,6 +23,8 @@ namespace AutoForumReader
 
         /// <summary>
         /// Initialize configuration file and load variables
+        /// If all initialization events were successful launch the forum reader method that will
+        /// process the forum posts.
         /// </summary>
         public void forumReaderInit()
         {
@@ -46,7 +51,7 @@ namespace AutoForumReader
             }
             try
             {
-                //Begin processing
+                //Begin processing of forum posts
                 serverLog.RunTime("Beginning polling websites");
                 forumReader();
             }
@@ -59,7 +64,7 @@ namespace AutoForumReader
         }
 
         /// <summary>
-        /// Main calling method.  Will open webpage, parse through html code to find nodes
+        /// Main processing method.  Will open webpage, parse through html code to find nodes
         /// returns back forumPosts list of forumAttribute objects
         /// </summary>
         private void forumReader()
@@ -155,6 +160,8 @@ namespace AutoForumReader
                     {
                         string mainForumTitle = titleNode.InnerHtml;
 
+
+
                         string idString = link.Attributes[appSettings.ForumIDQuery].Value;
                         string idOnly = CleanIDString(idString);
                         string postWebsite = CleanWebsiteString(idOnly, website);
@@ -164,6 +171,7 @@ namespace AutoForumReader
                         string cleanTitle = CleanString(titleString);
 
                         string tooltip = childNode.Attributes[appSettings.TooltipQuery].Value;
+
                         string cleanTooltip = CleanString(tooltip);
 
                         //TODO create parser to determine what spec a post is here
@@ -348,6 +356,12 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Creates the website string for the actual forum post and not the main forum site
+        /// </summary>
+        /// <param name="idString"></param>
+        /// <param name="website"></param>
+        /// <returns></returns>
         private string CleanWebsiteString(string idString, string website)
         {
             try
@@ -376,7 +390,12 @@ namespace AutoForumReader
         {
             try
             {
+                //Remove newline
                 string replacement = Regex.Replace(topicString, @"\t|\n|\r", "");
+                //Decode HTML to plaintext
+                replacement = System.Web.HttpUtility.HtmlDecode(replacement);
+                //Remove other unwanted characters
+                replacement = Regex.Replace(replacement, "[^0-9a-zA-z/\\\\:'# -]", "");
                 return replacement;
             }
             catch (Exception Ex)
@@ -426,8 +445,6 @@ namespace AutoForumReader
             }
         }
 
-        #region CloseLogFile
-
         /// <summary>
         /// This method call the class Log to Close the log file.  
         /// </summary>
@@ -435,9 +452,7 @@ namespace AutoForumReader
         {
             serverLog.Close();
 
-        }   // end of method
-
-        #endregion
+        }
 
     }
 }

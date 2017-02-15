@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace AutoForumReader
@@ -127,84 +124,182 @@ namespace AutoForumReader
             }
         }
         
+        /// <summary>
+        /// This method will parse through the email title first and look for what spec the poster is
+        /// if the method is unable to find the spec of the poster in the title it will move on to
+        /// the body of the message.  
+        /// </summary>
+        /// <param name="forumPosts"></param>
+        /// <returns></returns>
         public List<ForumPostAttributes> CheckSpec(List<ForumPostAttributes> forumPosts)
         {
+            try
+            {
             foreach (ForumPostAttributes post in forumPosts)
             {
+                    string upperForumTitle = post.forumTitle.ToUpper();
+                    string upperForumTooltip = post.forumPreview.ToUpper();
+                    List<string> posterSpecListInit = new List<string>();
+                    post.posterSpec = posterSpecListInit;
 
-                string upperForumTitle = post.forumTitle.ToUpper();
-                string upperForumTooltip = post.forumPreview.ToUpper();
-
-                foreach (string tankFilter in appSettings.TankFilters)
-                {
-                    Regex regex = new Regex(tankFilter);
-                    Match match = regex.Match(upperForumTitle);
-
-                    if (match.Success)
+                    //Set poster spec as tank if any of the keywords for tanks are found
+                    foreach (string tankFilter in appSettings.TankFilters)
                     {
-                        post.posterSpec = "#Tank";
-                    }
-                    else
-                    {
-                        match = regex.Match(upperForumTooltip);
+                        Regex regex = new Regex(tankFilter);
+                        Match match = regex.Match(upperForumTitle);
 
                         if (match.Success)
                         {
-                            post.posterSpec = "#Tank";
+                            post.posterSpec = Tankpost(post, "#Tank");
+                            post.tankCounter++;
                         }
-                    }
+                        else
+                        {
+                            match = regex.Match(upperForumTooltip);
 
-                }//END For Each #Tank
+                            if (match.Success)
+                            {
+                                post.posterSpec = Tankpost(post, "#Tank");
+                                post.tankCounter++;
+                            }
+                        }
 
-                foreach (string dpsFilter in appSettings.DpsFilters)
-                {
-                    Regex regex = new Regex(dpsFilter);
-                    Match match = regex.Match(upperForumTitle);
+                    }//END For Each #Tank
 
-                    if (match.Success)
+                    //Set poster spec as DPS if any of the keywords for DPS are found
+                    foreach (string dpsFilter in appSettings.DpsFilters)
                     {
-                        post.posterSpec = "#DPS";
-                    }
-                    else
-                    {
-                        match = regex.Match(upperForumTooltip);
+                        Regex regex = new Regex(dpsFilter);
+                        Match match = regex.Match(upperForumTitle);
 
                         if (match.Success)
                         {
-                            post.posterSpec = "#DPS";
+                            post.posterSpec = DPSpost(post, "#DPS");
+                            post.dpsCounter++;
                         }
-                    }
+                        else
+                        {
+                            match = regex.Match(upperForumTooltip);
 
-                }//END For Each #DPS
+                            if (match.Success)
+                            {
+                                post.posterSpec = DPSpost(post, "#DPS");
+                                post.dpsCounter++;
+                            }
+                        }
 
-                foreach (string healFilter in appSettings.HealsFilters)
-                {
-                    Regex regex = new Regex(healFilter);
-                    Match match = regex.Match(upperForumTitle);
+                    }//END For Each #DPS
 
-                    if (match.Success)
+                    //Set poster spec as Healer if any of the keywords for Healers are found
+                    foreach (string healFilter in appSettings.HealsFilters)
                     {
-                        post.posterSpec = "#Healer";
-                    }
-                    else
-                    {
-                        match = regex.Match(upperForumTooltip);
+                        Regex regex = new Regex(healFilter);
+                        Match match = regex.Match(upperForumTitle);
 
                         if (match.Success)
                         {
-                            post.posterSpec = "#Healer";
+                            post.posterSpec = Healerpost(post, "#Healer");
+                            post.healerCounter++;
                         }
+                        else
+                        {
+                            match = regex.Match(upperForumTooltip);
+
+                            if (match.Success)
+                            {
+                                post.posterSpec = Healerpost(post, "#Healer");
+                                post.healerCounter++;
+                            }
+                        }
+
+                    }//END For Each #DPS
+
+                    if (post.tankCounter == 0 && post.dpsCounter == 0 && post.healerCounter == 0)
+                    {
+                        post.posterSpec.Add("#Unknown");
                     }
-
-                }//END For Each #DPS
-
-                if (post.posterSpec == null)
-                {
-                    post.posterSpec = "#Unknown";
                 }
+                //Found Nothing
+                return forumPosts;
             }
-            //Found Nothing
-            return forumPosts;
+            catch (Exception Ex)
+            {
+                string localError = "Error while adding tag identifier to post object: ";
+                //serverLog.Error(localError + Ex.Message);
+                throw new Exception("-- FPARSE003 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// This method will add in the tag for tank spec if called by the finder method above
+        /// </summary>
+        /// <param name="postIn"></param>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        private List<string> Tankpost (ForumPostAttributes postIn, string spec)
+        {
+            try
+            {
+                if (postIn.tankCounter == null || postIn.tankCounter < 1)
+                {
+                    postIn.posterSpec.Add(spec);
+                }
+                return postIn.posterSpec;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Error while adding tag Tank identifier to post object: ";
+                //serverLog.Error(localError + Ex.Message);
+                throw new Exception("-- FPARSE004 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// This method will add in the tag for DPS spec if called by the finder method above
+        /// </summary>
+        /// <param name="postIn"></param>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        private List<string> DPSpost(ForumPostAttributes postIn, string spec)
+        {
+            try
+            {
+                if (postIn.dpsCounter == null || postIn.dpsCounter < 1)
+                {
+                    postIn.posterSpec.Add(spec);
+                }
+                return postIn.posterSpec;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Error while adding tag DPS identifier to post object: ";
+                //serverLog.Error(localError + Ex.Message);
+                throw new Exception("-- FPARSE005 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// This method will add in the tag for Healer spec if called by the finder method above
+        /// </summary>
+        /// <param name="postIn"></param>
+        /// <param name="spec"></param>
+        /// <returns></returns>
+        private List<string> Healerpost(ForumPostAttributes postIn, string spec)
+        {
+            try
+            {
+                if (postIn.healerCounter == null || postIn.healerCounter < 1)
+                {
+                    postIn.posterSpec.Add(spec);
+                }
+                return postIn.posterSpec;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Error while adding tag Healer identifier to post object: ";
+                //serverLog.Error(localError + Ex.Message);
+                throw new Exception("-- FPARSE006 " + localError + Ex.Message.ToString());
+            }
         }
 
     }

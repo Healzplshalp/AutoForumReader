@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.Specialized;
 using DCSit;
 
@@ -10,6 +7,9 @@ namespace AutoForumReader
 {
     class GetAppSettings
     {
+        /// <summary>
+        /// All fields for all application settings
+        /// </summary>
         #region Fields
 
         private static List<string> websiteURLS;
@@ -39,6 +39,9 @@ namespace AutoForumReader
 
         #endregion 
 
+        /// <summary>
+        /// All getters for application 
+        /// </summary>
         #region Getters
 
         public List<string> WebsiteURL
@@ -106,6 +109,10 @@ namespace AutoForumReader
 
         #endregion
 
+        /// <summary>
+        /// This is the initializer that gets called when the all applications settings are to be loaded in
+        /// it returns all the fields above
+        /// </summary>
         public void GetAllAppSettings()
         {
             try
@@ -139,6 +146,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the websites that are to be parsed through.  This is a list
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetWebsiteURL()
         {
 
@@ -169,6 +180,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the filters for posts that are looking for a guild
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetLFFilters()
         {
 
@@ -199,6 +214,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the filters that will be used to remove guilds looking for people posts
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetGuildFilters()
         {
 
@@ -229,6 +248,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the filters that will be used to look for posts that are related to tanks
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetTankFilters()
         {
 
@@ -259,6 +282,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the filters that will be used to look for posts taht are related to DPS
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetDPSFilters()
         {
 
@@ -289,6 +316,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the filters that will be used to look for posts that are related to Healers
+        /// </summary>
+        /// <returns></returns>
         private static List<string> GetHealsFilters()
         {
 
@@ -319,6 +350,11 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets all the setting in the config file that will be used as a key to distinguish nodes in the HTML page
+        /// This is left configurable in the event that this application be used on more than just the Bnet forums
+        /// </summary>
+        /// <returns></returns>
         private static string GetForumNodeQuery()
         {
             string query;
@@ -343,6 +379,11 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets the key for distinguishing child nodes
+        /// This is left configurable in the event that this application be used on more than just the Bnet forums
+        /// </summary>
+        /// <returns></returns>
         private static string GetChildNodeQuery()
         {
             string query;
@@ -367,6 +408,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets the key for finding the forum ID tag.  This is probably proprietary to Bnet, but is also left configurable
+        /// </summary>
+        /// <returns></returns>
         private static string GetForumIDQuery()
         {
             string query;
@@ -391,6 +436,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets the key for finding the forum tooltip tag.  This is probably proprietary to Bnet, but is also left configurable
+        /// </summary>
+        /// <returns></returns>
         private static string GetTooltipQuery()
         {
             string query;
@@ -415,6 +464,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets the key for finding the forum title tag.  This is probably proprietary to Bnet, but is also left configurable
+        /// </summary>
+        /// <returns></returns>
         private static string GetForumTitleQuery()
         {
             string query;
@@ -439,6 +492,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Gets the path of the XML file that is used as a flat database file for saving all posts that have already been read
+        /// </summary>
+        /// <returns></returns>
         private static string GetXMLDirectory()
         {
             string Dir;
@@ -499,6 +556,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the recipient's email address
+        /// </summary>
+        /// <returns></returns>
         private static string GetEmailTo()
         {
             string emailParam;
@@ -531,6 +592,11 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the password for the sender's email account.  
+        /// This can be encrypted
+        /// </summary>
+        /// <returns></returns>
         private static string GetEmailPW()
         {
             string emailParam;
@@ -563,6 +629,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the subject verbiage for the email
+        /// </summary>
+        /// <returns></returns>
         private static string GetEmailSubject()
         {
             string emailParam;
@@ -586,6 +656,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the location of the server logs
+        /// </summary>
+        /// <returns></returns>
         private static string GetServerLogLocation()
         {
             string serverLogParam;
@@ -609,6 +683,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the name of the server logs
+        /// </summary>
+        /// <returns></returns>
         private static string GetServerLogName()
         {
             string serverLogParam;
@@ -632,6 +710,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get the extension type of the server logs, ie .log or .txt
+        /// </summary>
+        /// <returns></returns>
         private static string GetServerLogType()
         {
             string serverLogParam;
@@ -655,6 +737,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get whether or not the switch for logging INFO type events is on or off
+        /// </summary>
+        /// <returns></returns>
         private static string GetServerLogJobSW()
         {
             string serverLogParam;
@@ -678,6 +764,10 @@ namespace AutoForumReader
             }
         }
 
+        /// <summary>
+        /// Get whether or not the switch for logging ERROR type events is on or off
+        /// </summary>
+        /// <returns></returns>
         private static string GetServerLogDebugSW()
         {
             string serverLogParam;

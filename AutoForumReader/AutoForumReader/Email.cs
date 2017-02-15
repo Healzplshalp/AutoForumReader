@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net;
 
 namespace AutoForumReader
 {
+    /// <summary>
+    /// This class handles sending email notifications out to the proper addresses
+    /// </summary>
     class Email
     {
         GetAppSettings appSettings = new GetAppSettings();
@@ -35,6 +35,7 @@ namespace AutoForumReader
 
         /// <summary>
         /// Emailer will actually send the email with the information from post
+        /// check the config file for where the email goes to. 
         /// </summary>
         /// <param name="post"></param>
         private void Emailer(ForumPostAttributes post)
@@ -44,10 +45,18 @@ namespace AutoForumReader
             msg.From = new MailAddress(appSettings.EmailFrom);
             msg.To.Add(appSettings.EmailTo);
             msg.Subject = appSettings.EmailSubject + post.forumTitle;
-            msg.Body = post.forumPreview + "\n \n"
-                     + "Post from: " + post.postSite + "\n \n"
-                     + "#" + post.mainForumTitle + "\n"
-                     + post.posterSpec;
+
+            string body = post.forumPreview + "\n \n"
+                     + "Post from: " + post.postSite + "\n \n"      //Site that the forum post originated from this is the web address
+                     + "#" + post.mainForumTitle;                   //Title of the main forum page ie: guild recruitment
+
+            //Create body of email concacenate tags for Tank/DPS/Healer to end of email
+            foreach (string spec in post.posterSpec)
+            {
+                body = body + "\n" + spec;
+            }
+
+            msg.Body = body;
 
             SmtpClient client = new SmtpClient();
             client.UseDefaultCredentials = true;
