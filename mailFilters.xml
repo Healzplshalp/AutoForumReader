@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8'?><feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>
+	<title>Mail Filters</title>
+	<id>tag:mail.google.com,2008:filters:1486759206921,1486759308043,1486759341552,1486759362909,1486759699025,1486759741702,1486759763641,1486759825265,1486759843187,1486759873639,1487193308967,1487196982197</id>
+	<updated>2017-02-23T13:42:04Z</updated>
+	<author>
+		<name>Something Diabolical</name>
+		<email>sdguildrecruitment@gmail.com</email>
+	</author>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759206921</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Guild Recruitment&quot; AND &quot;#DPS&quot;'/>
+		<apps:property name='label' value='GuildRecruitment/DPS'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759308043</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Guild Recruitment&quot; AND &quot;#Tank&quot;'/>
+		<apps:property name='label' value='GuildRecruitment/Tank'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759341552</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Guild Recruitment&quot; AND &quot;#Healer&quot;'/>
+		<apps:property name='label' value='GuildRecruitment/Healer'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759362909</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Guild Recruitment&quot; AND &quot;#Unknown&quot;'/>
+		<apps:property name='label' value='GuildRecruitment'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759699025</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#DPS&quot;'/>
+		<apps:property name='doesNotHaveTheWord' value='&quot;#Stormrage&quot; OR &quot;#Guild Recruitment&quot;'/>
+		<apps:property name='label' value='OtherBnetForum/DPS'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759741702</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='hasTheWord' value='subject:AutoForumReader &quot;#Healer&quot; -{&quot;#Stormrage&quot; OR &quot;#Guild Recruitment&quot;}'/>
+		<apps:property name='label' value='OtherBnetForum/Healer'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759763641</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Tank&quot;'/>
+		<apps:property name='doesNotHaveTheWord' value='&quot;#Stormrage&quot; OR &quot;#Guild Recruitment&quot;'/>
+		<apps:property name='label' value='OtherBnetForum/Tank'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759825265</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Stormrage&quot; AND &quot;#DPS&quot;'/>
+		<apps:property name='label' value='Stormrage/DPS'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759843187</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Stormrage&quot; AND &quot;#Tank&quot;'/>
+		<apps:property name='label' value='Stormrage/Tank'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1486759873639</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Stormrage&quot; AND &quot;#Healer&quot;'/>
+		<apps:property name='label' value='Stormrage/Healer'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1487193308967</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Stormrage&quot; AND &quot;#Unknown&quot;'/>
+		<apps:property name='label' value='Stormrage'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+	<entry>
+		<category term='filter'></category>
+		<title>Mail Filter</title>
+		<id>tag:mail.google.com,2008:filter:1487196982197</id>
+		<updated>2017-02-23T13:42:04Z</updated>
+		<content></content>
+		<apps:property name='subject' value='AutoForumReader'/>
+		<apps:property name='hasTheWord' value='&quot;#Unknown&quot;'/>
+		<apps:property name='doesNotHaveTheWord' value='&quot;#Guild Recruitment&quot; OR &quot;#Stormrage&quot;'/>
+		<apps:property name='label' value='OtherBnetForum'/>
+		<apps:property name='sizeOperator' value='s_sl'/>
+		<apps:property name='sizeUnit' value='s_smb'/>
+	</entry>
+</feed>
