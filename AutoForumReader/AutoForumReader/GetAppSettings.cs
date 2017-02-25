@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using DCSit;
+using System.Configuration;
+using BSIDecryption;
+using System.Text;
+using System.IO;
 
 namespace AutoForumReader
 {
@@ -25,6 +28,7 @@ namespace AutoForumReader
         private static string tooltipQuery;
         private static string forumTitleQuery;
         private static string xmlDir;
+        private static string aesEncrpytionKey;
 
         private static string emailFrom;
         private static string emailTo;
@@ -76,6 +80,9 @@ namespace AutoForumReader
 
         public string ForumTitleQuery
         { get { return forumTitleQuery; } }
+
+        public string AESEncryptionKey
+        { get { return aesEncrpytionKey; } }
 
         public string XMLDir
         { get { return xmlDir; } }
@@ -129,6 +136,7 @@ namespace AutoForumReader
                 tooltipQuery = GetTooltipQuery();
                 forumTitleQuery = GetForumTitleQuery();
                 xmlDir = GetXMLDirectory();
+                aesEncrpytionKey = GetAESEnKey();
                 emailFrom = GetEmailFrom();
                 emailTo = GetEmailTo();
                 emailPW = GetEmailPW();
@@ -521,6 +529,38 @@ namespace AutoForumReader
         }
 
         /// <summary>
+        /// Gets the path of the file containing the encryption key for string decryption
+        /// </summary>
+        /// <returns></returns>
+        private static string GetAESEnKey()
+        {
+            string Dir;
+            string EnKey;
+
+            try
+            {
+                Dir = System.Configuration.ConfigurationManager
+                                            .AppSettings["EnKey"]
+                                            .ToString();
+
+                if (String.IsNullOrEmpty(Dir))
+                {
+                    throw new Exception("-- APS0658 Directory for EnKey directory file is blank");
+                }
+
+                using (StreamReader reader = new StreamReader(Dir, Encoding.Default))
+                    EnKey = reader.ReadToEnd();
+
+                return EnKey;
+            }
+            catch (Exception Ex)
+            {
+                string localError = "Encountered problem reading EnKey directory from config file: ";
+                throw new Exception("--APS0431 " + localError + Ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
         /// Get the sender's email address.  This can be an encrypted field
         /// </summary>
         /// <returns></returns>
@@ -538,16 +578,10 @@ namespace AutoForumReader
                 {
                     throw new Exception("-- APS0118 No Email From Set");
                 }
-                if (emailParam.StartsWith("^"))
-                {
-                    SitDecoder sit = new SitDecoder();
-                    emailParam = sit.Decrypt(emailParam).ToString();
-                    return emailParam;
-                }
-                else
-                {
-                    return emailParam;
-                }
+                Decrypyter paramDecrpytion = new Decrypyter();
+
+                string emailParamDecrypted = paramDecrpytion.DecryptString(emailParam, aesEncrpytionKey);
+                return emailParamDecrypted;
             }
             catch (Exception Ex)
             {
@@ -574,16 +608,10 @@ namespace AutoForumReader
                 {
                     throw new Exception("-- APS0128 No Email To Set");
                 }
-                if (emailParam.StartsWith("^"))
-                {
-                    SitDecoder sit = new SitDecoder();
-                    emailParam = sit.Decrypt(emailParam).ToString();
-                    return emailParam;
-                }
-                else
-                {
-                    return emailParam;
-                }
+                Decrypyter paramDecrpytion = new Decrypyter();
+
+                string emailParamDecrypted = paramDecrpytion.DecryptString(emailParam, aesEncrpytionKey);
+                return emailParamDecrypted;
             }
             catch (Exception Ex)
             {
@@ -611,16 +639,10 @@ namespace AutoForumReader
                 {
                     throw new Exception("-- APS0138 No Email Password Set");
                 }
-                if (emailParam.StartsWith("^"))
-                {
-                    SitDecoder sit = new SitDecoder();
-                    emailParam = sit.Decrypt(emailParam).ToString();
-                    return emailParam;
-                }
-                else
-                {
-                    return emailParam;
-                }
+                Decrypyter paramDecrpytion = new Decrypyter();
+
+                string emailParamDecrypted = paramDecrpytion.DecryptString(emailParam, aesEncrpytionKey);
+                return emailParamDecrypted;
             }
             catch (Exception Ex)
             {

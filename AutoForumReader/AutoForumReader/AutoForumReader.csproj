@@ -32,8 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DCSit">
-      <HintPath>..\..\..\..\..\..\..\Tools_C#\BSI\References\DCSit.dll</HintPath>
+    <Reference Include="BSIDecryption">
+      <HintPath>..\..\..\..\..\Documents\Visual Studio 2013\Projects\BSIDecryption\BSIDecryption\bin\Release\BSIDecryption.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\..\..\..\Desktop\HTMLAgilityPack\Net45\HtmlAgilityPack.dll</HintPath>
