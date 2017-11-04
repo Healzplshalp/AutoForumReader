@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BSIDecryption</name>
+    </assembly>
+    <members>
+        <member name="T:BSIDecryption.Decrypyter">
+            <summary>
+            This class handles the decryption of strings passed into it using AES.  The key length is expected to be 256bit
+            </summary>
+        </member>
+        <member name="M:BSIDecryption.Decrypyter.isEncrypted(System.String)">
+            <summary>
+            This method can be called to check if a string being passed in has been encrypted using the BSI encryption algorithm
+            </summary>
+            <param name="plainText">String to check for encryption</param>
+            <returns>True if string is encrypted using BSI encryption tool
+            False if string is not encrypted or not encrypted using BSI tool</returns>
+        </member>
+        <member name="M:BSIDecryption.Decrypyter.DecryptString(System.String,System.String)">
+            <summary>
+            This method is the public called method that will handle decryption of an encrypted string given a key
+            </summary>
+            <param name="plainText">Encrypted plaintext input string</param>
+            <param name="key32">256bit Key used for encryption</param>
+            <returns>Unencrypted plaintext string</returns>
+        </member>
+        <member name="M:BSIDecryption.Decrypyter.isStringEncrypted(System.String)">
+            <summary>
+            This method checks to see whether a string is encrypted using the BSI encryption utility.  
+            </summary>
+            <param name="plainText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSIDecryption.Decrypyter.StripEncryptedHeader(System.String)">
+            <summary>
+            This method strips out the custom header that signifies that a string has been encrypted by the 
+            BSI utility
+            </summary>
+            <param name="plainText"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSIDecryption.Decrypyter.DecryptStringFromBytes_Aes(System.Byte[],System.Byte[])">
+            <summary>
+            This method handles decryption of an encrypted string given a 256 bit key.  
+            </summary>
+            <param name="cipherTextCombined">Encrypted byte array input</param>
+            <param name="Key">256bit Key used for encryption</param>
+            <returns>Unencrypted plaintext string</returns>
+        </member>
+    </members>
+</doc>

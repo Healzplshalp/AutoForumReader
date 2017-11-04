@@ -1,0 +1,12 @@
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncryptionKey.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncryptionKey.XML
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncryptionKey.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncryptionKey.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncrypt.dll
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\bin\Release\BSIEncrypt.pdb
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.KeyGenerator.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.exe
+C:\Users\Administrator\Documents\Visual Studio 2013\Projects\Batch\DLLs\BSIEncryptionKey\BSIEncryptionKey\obj\Release\BSIEncryptionKey.pdb

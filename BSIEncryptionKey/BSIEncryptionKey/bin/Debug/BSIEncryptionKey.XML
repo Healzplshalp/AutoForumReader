@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BSIEncryptionKey</name>
+    </assembly>
+    <members>
+        <member name="T:BSIEncryptionKey.KeyGenerator">
+            <summary>
+            This class handles the windows form that can be used to generate an enecryped 256bit key 
+            and test the encryption and decryption algorithms.  
+            </summary>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.#ctor">
+            <summary>
+            Initialize windows form
+            </summary>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.KeygenButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            Generate key button click.  This method handles the geneate key button being clicked
+            </summary>
+            <param name="sender">OnClick</param>
+            <param name="e">EventHandler</param>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.EncryptButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            This metho dhandles the ecnryption button being pressed.  The encryption method takes 
+            the key from the key textbox and uses it to encrpyt the plain text that is in the encrypted in box
+            Key must be 32bytes or 256bits.  The key must be manually input into the input key text box
+            The plain text field must be populated
+            </summary>
+            <param name="sender">OnClick</param>
+            <param name="e">EventHandler</param>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.DecryptButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            The decrypt button handles the decrypting test of a plain text encrypted string using the 
+            existing key in the key encrypted in text box.
+            </summary>
+            <param name="sender">OnClick</param>
+            <param name="e">EventHandler</param>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.SaveKeyButton_Click(System.Object,System.EventArgs)">
+            <summary>
+            The save key button method handles saving the generated key to a text file using the file 
+            dialogue window.  
+            </summary>
+            <param name="sender">OnClick</param>
+            <param name="e">EventHandler</param>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.WhiteFields">
+            <summary>
+            This method handles clearing the red highlight from the fields that have been focused as fields 
+            requiring input for the selected action. 
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSIEncryptionKey.KeyGenerator.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.Key">
+            <summary>
+            Text Box that contains the generated encryption key
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.KeygenButton">
+            <summary>
+            Button used to generate encryption key
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptedIn">
+            <summary>
+            Text box used for plain text unencrypted text input string
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptButton">
+            <summary>
+            Button that handles calling of encryption method
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptedOut">
+            <summary>
+            Text field that contains the output of encryption
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptedKey">
+            <summary>
+            Text box that must contain the generated encryption key, or a copied in key from another location
+            this field is NOT populated by the Key text box.
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.DecryptOut">
+            <summary>
+            This field contains the output of the decryption test
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.DecryptButton">
+            <summary>
+            This button handles the decryption of the encrypted text from the encrypted out text box using the encrypted key.
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptionKeyLabel">
+            <summary>
+            Label for field
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptionTextLabel">
+            <summary>
+            Label for field
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.EncryptionTextOutLabel">
+            <summary>
+            Label for field
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.DecryptedTextLabel">
+            <summary>
+            Label for field
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.TestPanel">
+            <summary>
+            Panel used to contain the test workspace
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.PanelLabel">
+            <summary>
+            Label for panel
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.SaveKeyButton">
+            <summary>
+            This button handles the saving of the generated key using windows dialogue
+            </summary>
+        </member>
+        <member name="F:BSIEncryptionKey.KeyGenerator.SaveLabel">
+            <summary>
+            Label for button
+            </summary>
+        </member>
+        <member name="T:BSIEncryptionKey.Program">
+            <summary>
+            Contains the main entry point for the application
+            </summary>
+        </member>
+        <member name="M:BSIEncryptionKey.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:BSIEncryptionKey.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BSIEncryptionKey.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BSIEncryptionKey.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>
