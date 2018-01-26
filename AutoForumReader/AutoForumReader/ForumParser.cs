@@ -38,7 +38,7 @@ namespace AutoForumReader
                 {
                     isGuildRecruitmentPost = IsPost(post, appSettings.GFilters);
 
-                    if (isGuildRecruitmentPost)
+                    if (!isGuildRecruitmentPost)
                     {
                         readFlag.Add(readIndex);
                     }
@@ -61,7 +61,7 @@ namespace AutoForumReader
                 {
                     isProspectiveRecruit = IsPost(post, appSettings.LFFilters);
 
-                    if (!isProspectiveRecruit)
+                    if (isProspectiveRecruit)
                     {
                         readFlag.Add(readIndex);
                     }
